@@ -1,0 +1,53 @@
+---->Setting up tools
+-Java installed on machine. Atleast Java 8
+-downloaded kafka bin and have it pasted in c: drive
+
+Setup Kafka Bin on Local Machine
+1. Download kafka bin by opening this link:
+http://www.java2s.com/Code/JarDownload/commons-cli/commons-cli-2.jar.zip
+2. extract the zip file
+3. copy the extracted folder to c: drive
+
+
+------------->Running Kafka<---------------
+
+----->Run Zookeeper & Kafka Server<------
+1. Open command prompt as an Administrator or linux terminal
+2. Navigate to pasted Kafka folder located in C:
+cd c:\kafka
+3. Run command below to start Zookeeper server
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+~if using a linux/redhat machine, use this command instead
+bin/zookeeper-server-start.sh ./config/zookeeper.properties
+
+----->Run Kafka Broker Server<------
+1. Open command prompt as an Administrator or linux terminal
+2. Navigate to pasted Kafka folder located in C:
+cd c:\kafka
+3. Run command below to start Kafka server
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+~if using a linux/redhat machine, use this command instead
+bin/zookeeper-server-start.sh ./config/zookeeper.properties
+
+----> Creating a Kafka Topic<--------
+1. Open command prompt as an Administrator or linux terminal
+2. Navigate to pasted Kafka folder located in C:
+cd c:\kafka
+3. Create topic "twitter-data-topic" by running command below
+.\bin\windows\kafka-topics.bat --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic twitter-data-topic
+
+----> Consume data via console from created topic <--------
+1. Open command prompt as an Administrator or linux terminal
+2. Navigate to pasted Kafka folder located in C:
+cd c:\kafka
+3. Create topic "twitter-data-topic" by running command below
+.\bin\windows\kafka-console-consumer.bat --topic twitter-data-topic --from-beginning --bootstrap-server localhost:9092
+
+---->Run Jar File to collect twitter data<--------
+1. copy and paste jar file into a folder of your choice
+2. copy and paste jar file into a folder of your choice, better if same location with jar file
+3. open command prompt as administrator
+4. navigate to jar folder location. tip: use cd command and refer to previous steps
+5. run command by following this command syntax
+java -jar dwcc-demo-twitter-stream.jar localhost:9092 <actual path of properties file>
+~instructor's actual command
